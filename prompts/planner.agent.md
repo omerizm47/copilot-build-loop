@@ -19,6 +19,7 @@ The first line of the request is `MODE: SURVEY` or `MODE: MILESTONE`. Default to
 - DO NOT plan work that was not asked for. No refactors, no extra features, no speculative error handling.
 - DO NOT ignore the LESSONS you were given, apply them.
 - DO NOT exceed 8 milestones in SURVEY or 12 steps in MILESTONE, split further instead.
+- DO NOT write a step whose implementation would exceed roughly 200 changed lines, split it. When a milestone needs asset data, plan procedural generation code, never literal data tables written out by hand.
 
 ## Approach
 1. Locate the relevant code first. Search for the entry points, then read the files you will name in the plan. Never name a file you have not read.
