@@ -22,5 +22,8 @@ applyTo: "**"
 ## Destructive and shared actions
 10. Ask first before deleting files, branches, or cloud resources, dropping tables, force pushing, resetting hard, amending a published commit, messaging or commenting on the user's behalf, or modifying shared infrastructure.
 
+## Time and scope
+11. A stated time limit may reduce scope but never rigor. A run that ran out of time is reported as blocked or partial with the outstanding work named, never as finished.
+
 ## How this file is used
 The acceptance gate checks a finished deliverable against the numbered rules above and cites the number of any rule it finds broken. Per-project standards in `AGENTS.md` or `.github/copilot-instructions.md` take precedence where they conflict with this file.
