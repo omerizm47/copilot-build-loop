@@ -10,7 +10,7 @@ You invoke one agent, `build-loop`. It surveys the request into milestones, then
 | --- | --- | --- |
 | `build-loop.agent.md` | Orchestrator. Writes no code. Runs the milestone loop, keeps the journal, enforces the cycle, re-plan, and split budgets. | `agent`, `todo`, `read`, `search`, `edit` |
 | `planner.agent.md` | Splits the goal into milestones (SURVEY mode) or plans one milestone in detail (MILESTONE mode). Read-only. | `read`, `search`, `web` |
-| `implementer.agent.md` | Executes the plan or a fix list exactly. Runs fast checks. Also does checkpoint commits and file-scoped reverts. | `read`, `edit`, `search`, `execute`, `todo` |
+| `implementer.agent.md` | Executes the plan or a fix list exactly. Runs fast checks. Also does checkpoint commits, file-scoped reverts, and an approved push. | `read`, `edit`, `search`, `execute`, `todo` |
 | `reviewer.agent.md` | Adversarial critic. Runs the tests itself, checks each acceptance criterion, detects regressions. Returns PASS or CHANGES_REQUIRED with a numbered fix list. Read-only. | `read`, `search`, `execute` |
 | `acceptance.agent.md` | Final intent gate. Judges the result against the original request and the standards file only. Returns ACCEPTED or REJECTED. Read-only. | `read`, `search`, `execute` |
 
@@ -54,7 +54,7 @@ Restart VS Code or reload the window after installing so the new agents are pick
 
 It will ask questions only when the planner genuinely cannot proceed, then run milestones until they pass review or are blocked, then run the acceptance gate.
 
-The loop commits as it goes. Every time a milestone passes review it makes a local commit on your current branch, `checkpoint: <milestone name>`, staging only the files that milestone changed. It never pushes and never opens a pull request without asking you for that specific action first. Commit or stash anything you do not want caught up in that before you start a run.
+The loop commits as it goes. Every time a milestone passes review it makes a local commit on your current branch, `checkpoint: <milestone name>`, staging only the files that milestone changed. It never pushes and never opens a pull request without asking you for that specific action first. When you do approve a push it pushes that one branch and stops there: it never force pushes, and it never opens a pull request. Commit or stash anything you do not want caught up in that before you start a run.
 
 If a run looks stuck or frozen, say so in chat: that is a signal the loop acts on, and it abandons the outstanding subagent call, splits the step, and continues.
 
